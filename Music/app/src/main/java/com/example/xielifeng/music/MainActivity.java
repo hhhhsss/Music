@@ -6,11 +6,13 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.xielifeng.music.fragment.localMusicFragment;
 import com.example.xielifeng.music.fragment.onlineMusicFragment;
@@ -18,21 +20,12 @@ import com.example.xielifeng.music.fragment.settingFragment;
 import com.example.xielifeng.music.fragment.songListFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
-
+    private String TAG="Music";
     private ImageButton msongListButton;
     private ImageButton monlineMusicButton;
     private ImageButton msettingButton;
     private ImageButton mLocalMusicButton;
     private Fragment mlocalMusicFragment,msongListFragment,monlineMusicFragment,msettingFragment;
-    private ImageView mAddLikeMusicButton;
-    private ImageView mSingleCycleMusicButton;
-    private ImageView mPlayModeButton;
-    private ImageButton mPrevMusicButton;
-    private ImageButton mPlayMusicButton;
-    private ImageButton mNextMusicButton;
-    private TextView mPlayMusicStartTimeTextView;
-    private TextView mPlayMusicStopTimeTextView;
-    private SeekBar mPlayMusicSeekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,25 +36,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if(actionBar!=null){
             actionBar.hide();
         }
+
         initViews();
         initEvents();
         selectTab(0);//设置默认的主页
     }
+
 
     private void initViews() {
         mLocalMusicButton = (ImageButton) this.findViewById(R.id.music);
         msongListButton = (ImageButton) this.findViewById(R.id.SongList);
         monlineMusicButton =(ImageButton)this.findViewById(R.id.onlineMusic);
         msettingButton = (ImageButton) this.findViewById(R.id.set);
-        mAddLikeMusicButton = (ImageView)this.findViewById(R.id.addLikeMusicButton);
-        mSingleCycleMusicButton = (ImageView)this.findViewById(R.id.singleCycleMusicButton);
-        mPlayModeButton = (ImageView)this.findViewById(R.id.playModeButton);
-        mPrevMusicButton = (ImageButton)this.findViewById(R.id.prevMusicButton);
-        mPlayMusicButton = (ImageButton)this.findViewById(R.id.playMusicButton);
-        mNextMusicButton = (ImageButton)this.findViewById(R.id.nextMusicButton);
-        mPlayMusicStartTimeTextView = (TextView)this.findViewById(R.id.playMusicStartTimeTextView);
-        mPlayMusicStopTimeTextView = (TextView)this.findViewById(R.id.playMusicStopTimeTextView);
-        mPlayMusicSeekBar = (SeekBar)this.findViewById(R.id.playMusicSeekBar);
+
     }
     private void initEvents() {
         mLocalMusicButton.setOnClickListener(this);
